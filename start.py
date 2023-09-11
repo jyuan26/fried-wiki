@@ -34,6 +34,13 @@ complex_model = WikiFactChecker(config, logger=logger)
 file_logger = CSVLogger(config)
 logger.info(f"Models loaded.")
 
+#complex_model = get_converters()
+claim = "san francisco's population is bigger than that of new york city "
+results = complex_model.predict_all(claim)
+print(results)
+
+exit(0)
+
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1)
 CORS(app)
@@ -175,5 +182,5 @@ class TodoList(Resource):
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=80, host="0.0.0.0", threaded=True)
+    app.run(debug=False, port=8080, host="0.0.0.0", threaded=True)
 

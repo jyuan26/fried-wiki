@@ -32,16 +32,7 @@ class WikiFactChecker:
         self.logger.info("Model level one is loaded.")
         self.model_level_two = SentenceNLIModel(**model_level_two_config)
         self.logger.info("Model level two is loaded.")
-
-        if aggregation_model_path:
-            with open(aggregation_model_path, 'rb') as handle:
-                models_dict = pickle.load(handle)
-                self.model_clf = models_dict['clf_model']
-                self.model_ranking = models_dict['ranking_model']
-            self.logger.info("Aggregation stage models are loaded")
-        else:
-            self.logger.info("Aggregation stage is not loaded")
-
+        self.logger.info("Aggregation stage is not loaded")
     def predict_all(self, claim: str):
         """
         Complex method that given a claim connect model level one and model level two

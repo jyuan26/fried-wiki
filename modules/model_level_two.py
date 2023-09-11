@@ -80,6 +80,11 @@ class SentenceNLIModel:
         for embeddings in zip(embeddings_texts, embeddings_hypothesis):
             stacked_features = self._vector_stacking_logic(embeddings)
             results.append(self._normalize_probs(self.classification_model(stacked_features).detach().cpu().numpy()))
+            var1 = self.classification_model(stacked_features)
+            var2 = var1.detach()
+            var3 = var2.cpu()
+            var4 = var3.numpy()
+            var5 = self._normalize_probs(var4)
 
         self.profiler.finish_measure_local()
 
